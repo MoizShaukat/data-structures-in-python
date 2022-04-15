@@ -1,3 +1,9 @@
+# 1. First, we initialize the number of vertices in the graph.
+# 2. Then, we define a dictionary to store the adjacency list.
+# 3. Next, we add the edges to the graph.
+# 4. Finally, we print the adjacency list.
+# Time Complexity: O(V + E)
+
 class Graph:
     def __init__(self, vertices, directed=True):
         self.V = vertices
