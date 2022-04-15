@@ -25,7 +25,7 @@ class Graph:
     def print_adj_list(self):
         print('\n')
         for key in self.m_adj_list.keys():
-            print("node", key, ": ", self.m_adj_list[key])
+            print('node {} : {}'.format(key, self.adj_list[key]))
 
 
 graph = Graph(5)
