@@ -4,38 +4,52 @@
 # 4. Finally, we print the adjacency list.
 # Time Complexity: O(V + E)
 
-class Graph:
+class graph:
     def __init__(self, vertices, directed=True):
         self.V = vertices
-        self.m_nodes = range(self.V)
-
-        # Define the type of a graph
+        self.nodes = range(self.V)
+        
+        # Define the type of graph
         # for directed graph   ->  directed = True
         # for undirected graph ->  directed = False
         self.m_directed = directed
 
-        self.m_adj_list = {node: set() for node in self.m_nodes}
+        self.adj_list = {node: set() for node in self.nodes}
 
     def add_edge(self, node1, node2, weight=1):
-        self.m_adj_list[node1].add((node2, weight))
+        self.adj_list[node1].add((node2, weight))
 
         if not self.m_directed:
-            self.m_adj_list[node2].add((node1, weight))
+            self.adj_list[node2].add((node1, weight))
+
+    def delete_edge(self, node1, node2, weight=1):
+        self.adj_list[node1].remove((node2, weight))
+
+        if not self.m_directed:
+            self.adj_list[node2].remove((node1, weight))
 
     def print_adj_list(self):
-        print('\n')
-        for key in self.m_adj_list.keys():
-            print('node {} : {}'.format(key, self.adj_list[key]))
+        for key in self.adj_list.keys():
+            print('node {}: {}'.format(key, self.adj_list[key]))
 
 
-graph = Graph(5)
+Graph = graph(5)
+Graph.add_edge(0, 1, 3)
+Graph.add_edge(0, 4, 6)
+Graph.add_edge(1, 2, 9)
+Graph.add_edge(2, 0, 1)
+Graph.add_edge(2, 4, 11)
+Graph.add_edge(2, 3, 17)
+Graph.add_edge(3, 0, 18)
+Graph.add_edge(3, 4, 4)
+Graph.add_edge(4, 1, 7)
 
-graph.add_edge(0, 0, 25)
-graph.add_edge(0, 1, 5)
-graph.add_edge(0, 2, 3)
-graph.add_edge(1, 3, 1)
-graph.add_edge(1, 4, 15)
-graph.add_edge(4, 2, 7)
-graph.add_edge(4, 3, 11)
 
-graph.print_adj_list()
+Graph.print_adj_list()
+
+
+Graph.delete_edge(3, 0, 18)
+Graph.delete_edge(3, 4, 4)
+Graph.delete_edge(4, 1, 7)
+
+Graph.print_adj_list()
